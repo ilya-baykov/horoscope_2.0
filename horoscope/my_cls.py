@@ -45,4 +45,3 @@ ZodiacSign("aquarius",
 ZodiacSign("pisces", "Рыбы - двенадцатый знак зодиака, планеты Юпитер (с 20 февраля по 20 марта).",
            "Водные")
 
-print(ZodiacSign.all_signs)

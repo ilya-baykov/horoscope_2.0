@@ -8,6 +8,8 @@ from horoscope.my_cls import *
 
 zodiac_dict = ZodiacSign.all_signs
 zodiac_list = list(zodiac_dict)
+zodiac_elements = set([elem.element for elem in zodiac_dict.values()])
+
 
 
 def menu(requst):
@@ -35,3 +37,12 @@ def horoscope_info_digit(requese, current_zodiac_int):
     else:
         return HttpResponseNotFound(
             f"Нам жаль , но мы не знам  знак зодиака под цифрой - {current_zodiac_int}")
+
+
+def sign_type(request, current_type):
+    result = "<ul>"
+    for sign in zodiac_elements:
+        link = reverse("url_current_zodiac", args=(sign,))
+        result += f"<li><a href = '{link}'/> {sign}</a></li>"
+    result += "</ul>"
+    return HttpResponse(f"<H3>4 cтихии знаков:</H3>  <br>{result}")
