@@ -17,4 +17,4 @@ class ZodiacSign:
         return self.__element
 
     def __repr__(self):
-        return f"Знак зодиака {self.sign} стихия {self.__element}, {self.__description}"
+        return f"Знак зодиака {self.sign.title()} стихия {self.__element}, {self.__description}"
