@@ -68,7 +68,7 @@ def elem_viewer(requst, element):
     result = f"Зодиаки стихии <b>{element_translate}<b>:<br><ul>"
     for sign in current_element:
         link = reverse("url_current_zodiac", args=(sign,))
-        result += f"<li><a href = '{link}'>{sign}</li></a>"
+        result += f"<li><a href = '{link}'>{sign.title()}</li></a>"
     result += "</ul>"
     return HttpResponse(f" {result}")
 

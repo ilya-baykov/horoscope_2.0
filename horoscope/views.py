@@ -38,7 +38,7 @@ def sign_type(request):
     result = "<ul>"
     for sign_en, sign_ru in zodiac_elements.items():
         link = f"{reverse('type_name')}/{sign_en}"
-        result += f"<li> <a href = '{link}'>{sign_ru}</a></li>"
+        result += f"<li> <a href = '{link}'>{sign_ru.title()}</a></li>"
     result += "</ul>"
     return HttpResponse(f"<H3>4 cтихии знаков:</H3>  <br>{result}")
 
