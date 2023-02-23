@@ -45,3 +45,11 @@ ZodiacSign("aquarius",
 ZodiacSign("pisces", "Рыбы - двенадцатый знак зодиака, планеты Юпитер (с 20 февраля по 20 марта).",
            "Водные")
 
+zodiac_dict = ZodiacSign.all_signs
+zodiac_list = list(zodiac_dict)
+zodiac_elements = {
+    "fire": "Огонь",
+    "earth": "Земля",
+    "air": "Воздух",
+    "water": "Вода"
+}

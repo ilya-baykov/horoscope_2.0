@@ -3,13 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.urls import reverse
 from horoscope.my_cls import *
 
+
 # Create your views here.
-
-
-zodiac_dict = ZodiacSign.all_signs
-zodiac_list = list(zodiac_dict)
-zodiac_elements = set([elem.element for elem in zodiac_dict.values()])
-
 
 
 def menu(requst):
@@ -39,10 +34,14 @@ def horoscope_info_digit(requese, current_zodiac_int):
             f"Нам жаль , но мы не знам  знак зодиака под цифрой - {current_zodiac_int}")
 
 
-def sign_type(request, current_type):
+def sign_type(request):
     result = "<ul>"
-    for sign in zodiac_elements:
-        link = reverse("url_current_zodiac", args=(sign,))
-        result += f"<li><a href = '{link}'/> {sign}</a></li>"
+    for sign_en, sign_ru in zodiac_elements.items():
+        link = f"{reverse('type_name')}/{sign_en}"
+        result += f"<li> <a href = '{link}'>{sign_ru}</a></li>"
     result += "</ul>"
     return HttpResponse(f"<H3>4 cтихии знаков:</H3>  <br>{result}")
+
+
+def meme(request):
+    return HttpResponse(f"лол , это реально работает ?! )№ !) №) xD")
