@@ -43,5 +43,5 @@ def sign_type(request):
     return HttpResponse(f"<H3>4 cтихии знаков:</H3>  <br>{result}")
 
 
-def meme(request):
-    return HttpResponse(f"лол , это реально работает ?! )№ !) №) xD")
+def meme(request, current_type):
+    return wrapper(elem_viewer)(request, current_type)

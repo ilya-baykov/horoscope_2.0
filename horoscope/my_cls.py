@@ -1,3 +1,7 @@
+from django.http import HttpResponse
+from django.urls import reverse
+
+
 class ZodiacSign:
     all_signs = {}
 
@@ -48,8 +52,29 @@ ZodiacSign("pisces", "Рыбы - двенадцатый знак зодиака,
 zodiac_dict = ZodiacSign.all_signs
 zodiac_list = list(zodiac_dict)
 zodiac_elements = {
-    "fire": "Огонь",
-    "earth": "Земля",
-    "air": "Воздух",
-    "water": "Вода"
+    "fire": "Огня",
+    "earth": "Земли",
+    "air": "Воздушные",
+    "water": "Водные"
 }
+
+
+def elem_viewer(requst, element):
+    current_element = []
+    element_translate = zodiac_elements.get(element)
+    for elem in zodiac_dict.values():
+        if elem.element == element_translate:
+            current_element.append(elem.sign)
+    result = f"Зодиаки стихии <b>{element_translate}<b>:<br><ul>"
+    for sign in current_element:
+        link = reverse("url_current_zodiac", args=(sign,))
+        result += f"<li><a href = '{link}'>{sign}</li></a>"
+    result += "</ul>"
+    return HttpResponse(f" {result}")
+
+
+def wrapper(func):
+    def inner(request, elem):
+        return func(request, elem)
+
+    return inner
